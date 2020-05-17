@@ -1,0 +1,110 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Statistics for Data Science (DataSci w203)
+% Unit 2 homework
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+% Setup
+\documentclass[12pt,a4paper]{article}
+\usepackage[inner=1.5cm,outer=1.5cm,top=2.5cm,bottom=2.5cm]{geometry}
+\usepackage{graphicx}
+\usepackage[english]{babel}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\numberwithin{equation}{subsection}
+\usepackage{hyperref}
+\date{}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+\begin{document}
+
+\title{Statistics for Data Science \\
+       Unit 2 Homework: Discrete Random Variables}
+\maketitle
+
+%----------------------------------------------------------------------------------------
+%----------------------------------------------------------------------------------------
+\begin{enumerate}
+
+\item \textbf{Best Game in the Casino}
+
+You flip a fair coin 3 times, and get a different amount of money depending on how many heads you get. For 0 heads, you get \$0. For 1 head, you get \$2. For 2 heads, you get \$4. Your expected winnings from the game are \$6. 
+
+\begin{enumerate}
+\item How much do you get paid if the coin comes up heads 3 times? (3 points)
+\\ Answer: Let P(x) represents the probability with x heads
+\\Then $P(0) = {3 \choose 0} * 0.5 ^ 0 * 0.5 ^3 = \frac{1}{8}$,
+\\ $P(1) = {3 \choose 1} * 0.5 ^ 1 * 0.5 ^2 = \frac{3}{8}$,
+\\ $P(2) = {3 \choose 2} * 0.5 ^ 2 * 0.5 ^1 = \frac{3}{8}$,
+\\ $P(3) = {3 \choose 3} * 0.5 ^ 3 * 0.5 ^0 = \frac{1}{8}$,
+\\ Let m represents the amount of money get paid when coin comes up heads 3 times
+\\ $E(x) = P(0) * 0 + P(1) * 2 + P(2) * 4 + P(3) * m = 6$
+\\ then $m = 30$
+\item Write down a complete expression for the cumulative probability function for your winnings from the game. (3 points)
+\end{enumerate}
+
+\item \textbf{Reciprocal Dice}
+
+Let $X$ be a random variable representing the outcome of rolling a 6-sided die.  Before the die is rolled, you are given two options:
+
+\begin{enumerate}
+\item You get $1/E(X)$ in dollars right away. (3 points)
+
+\\Answer: $E(x) = \frac{1}{6} * (1 + 2 + 3 + 4 + 5 + 6) = 3.5$
+\\Then $\frac{1}{E(x)} = \frac{1}{3.5} = 0.286$
+
+\item You wait until the die is rolled, then get $1/X$ in dollars. (3 points)
+\\ Answer: $E(\frac{1}{x}) = \frac{1}{6} * (1 + \frac{1}{2} + \frac{1}{3} + \frac{1}{4} + \frac{1}{5} + \frac{1}{6}) = 0.24$
+
+\item Which option is better for you, in expectation? (1 point)
+\begin{enumerate}
+Answer: Because $0.286 > 0.24$, options (a) is better
+\end{enumerate}
+\end{enumerate}
+
+
+
+\item \textbf{The Baseline for Measuring Deviations}
+
+Given any random variable $X$ and a real number $t$, we can define another random variable $Y = (X - t)^2$. In other words, for any random variable $X$, we can choose a real number, $t$, as a baseline and calculate the squared deviation of $X$ away from $t$.
+
+You might wonder why we often square deviations (instead of taking an absolute value, or cubing them, etc.).  This exercise will shed some light on why this is a natural choice.
+
+\begin{enumerate}
+\item Write down an expression for $E(Y)$ and simplify it as much as you can.  Even though we haven't proved this yet, you can use the fact that for any two random variables, $A$ and $B$, $E(A + B) = E(A) + E(B)$. (3 points)
+\\ Answer: $E(Y) = E(X^2 + t^2 - 2X*t) = E(X^2) + E(t) - 2t*E(X) = E(X^2) + t^2 - 2t*E(X)$
+\item Taking a partial derivative with respect to $t$, compute the value of $t$ that minimizes $E(Y)$.  (Hint: Your answer should be a very familiar value) (3 points) 
+\\ Answer: the partial derivative with respect to t is $2*t - 2* E(X)$. To minimize E(Y), $2*t - 2* E(X) = 0$, or $t = E(X)$
+\item What is the value of $E(Y)$ for this choice of $t$? (3 points)
+(Hint: this should also be a very familiar value)
+\\ Answer when $t = E(X)$, $E(Y) = E(X^2) - E(X)*2 = Var (X)$ 
+\end{enumerate}
+
+\item \textbf{Optional Advanced Exercise: Heavy Tails}
+
+One reason to study the mathematical foundation of statistics is to recognize situations where common intuition can break down.  An unusual class of distributions are those we call \textit{heavy-tailed}.  The exact definition varies, but we'll say that a heavy-tailed distribution is one for which not all moments are finite.  Consider a random variable $M$ with the following pmf:
+
+$$p_M(x) = \begin{cases}
+c/x^3, &x \in \{1,2,3,...\}\\
+0, &otherwise.\\
+\end{cases}
+$$
+
+where $c$ is a constant (you can calculate its value if you like, but it's not important).
+
+\begin{enumerate}
+\item Is $E(M)$ finite? (Bonus +3 points) 
+\\ Answer: Yes
+\item Is $V(M)$ finite? (Bonus +3 points)
+\\ Answer: Yes
+\end{enumerate}
+
+Heavy-tailed distributions may seem odd, but they're not as rare as you might suspect.  Researchers argue that the distribution of wealth is heavy-tailed; so is the distribution of computer file sizes, insurance payouts, and area burned by forest fires.  These random variables are problematic in that a lot of common statistical techniques don't work on them.  For this class, we'll assume that all of our variables don't have heavy-tails.
+
+
+\textit{Note: Maximum score on any homework is 100\%}
+
+\end{enumerate}
+
+\end{document}
