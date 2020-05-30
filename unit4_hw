@@ -56,6 +56,20 @@
 \\ so $Cov(XY)  = E(XY) - E(X) E(Y) = \frac{1}{4} - \frac{2}{3} * \frac{1}{3}=0.028$
 
 \item \textbf{Great Time to Watch Async}
+\\ Answer: let M represents the waiting time in the morning, and let E represents the waiting time in the evening
+\\ (a) $E(5M + 5E) = 5 * [(E(M) + E(E)] = 5 * [\frac{0+5}{2} + \frac{0+10}{2}] = 37.5$
+\\ (b) Variance of total waiting time: $V(5M+5E) = 25 * (V(M) + V(E)) = 25 * [\frac{1}{12} * 5^2 + \frac{1}{12} * 10^2] = 260 $
+\\ (c) $E(5E - 5M) = 5 * [(E(E) - E(M)] = 5 * [\frac{0+10}{2} - \frac{0+5}{2}] = 12.5$
+\\ (d) Variance: $V(5E - 5M) = 25 * V(E) + 25*V(M) = 25 * [\frac{1}{12} * 10^2 + \frac{1}{12} * 5^2] = 260 $
+
+\item \textbf{Maximizing Correlation}
+\\ Answer: $Corr(X, Y) = \frac{Cov(X, Y)}{\sqrt{V(X)V(Y)}} =\frac{Cov(X, aX+b)}{\sqrt{V(X)V(aX+b)}} = \frac{Cov(X, aX)}{\sqrt{V(X) * a^2 * V(X)}} = \frac{a * Cov(X, X)}{ |a|  * V(X)} =\frac{a * V(X)}{ |a|  * V(X)}  = +1 or -1$
+
+\item \textbf{Optional Challenge Problem: Working with Poisson Variables}
+\\ Answer: 
+\\ (a) $P(N|M) = \frac{1}{m+1} = \frac{P(N,M)}{P(M)}$,
+\\ so $P(N,M) = P(N|M) * P(M) = \frac{1}{m+1} * \frac{a^m}{m!} * e^{-a} = \frac{a^m}{(m+1)!} * e^{-a}$, m=0,1,,,,m
+\\ (b) $P(n) = \sum_{m=0}^{\infty} \frac{a^m}{(m+1)!} * e^{-a} = \frac{1}{a}\sum_{m=0}^{\infty} \frac{a^{m+1}}{(m+1)!} * e^{-a} = \frac{1}{a} * \sum_{m=0}^{\infty}p(m+1) = \frac{1}{a}$
 
 \item \textbf{(Lecture)\#Fail}
 
@@ -71,14 +85,6 @@ Compute the hazard rate for C. (3 points)
 \\ Let u = -t, then du = -dt
 \\ So $F(t) = \int_0^t \! e^{-t} \, \mathrm{d}t = -\int_0^{-u} \! e^{u} \, \mathrm{d}u = -e^{u} \Biggr|_{0}^{-u} = -e^{-t} \Biggr|_{0}^{t} = -e^{-t} - (-1) = 1- e^{-t}$, where $t>0$
 \\ So $$h(t) = \frac{f(t)}{1-F(t)} = \frac{e^{-t}} {1-1+ e^{-t}} = 1$$
-
-\item \textbf{Optional Advanced Exercise: Characterizing a Function of a Random Variable}
-
-Let $X$ be a continuous random variable with probability density function $f(x)$, and let $h$ be an invertible function where $h^{-1}$ is differentiable.  Recall that $Y = h(X)$ is itself a continuous random variable.  Prove that the probability density function of $Y$ is
-
-$$g(y) =f(h^{-1}(y)) \cdot \left| \frac{d}{dy}h^{-1}(y) \right| $$
-
-(Bonus + 3 points)
 
 \end{enumerate}
 
