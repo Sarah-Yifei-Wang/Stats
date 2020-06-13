@@ -1,0 +1,94 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Statistics for Data Science (DataSci w203)
+% Unit 3 homework
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+% Setup
+\documentclass[12pt,a4paper]{article}
+\usepackage[inner=1.5cm,outer=1.5cm,top=2.5cm,bottom=2.5cm]{geometry}
+\usepackage{graphicx}
+\usepackage[english]{babel}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\numberwithin{equation}{subsection}
+\usepackage{hyperref}
+\date{}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+\begin{document}
+
+\title{Statistics for Data Science \\
+       Lab1}
+%\institute{Institution}
+\maketitle
+
+%----------------------------------------------------------------------------------------
+%----------------------------------------------------------------------------------------
+\begin{enumerate}
+
+\item \textbf{Meanwhile, at the Unfair Coin Factory...}
+
+\\ Answer:
+\\ (a) $P(H_k) = P(H_k|!T) * P(!T) + P(H_k|T) * P(T) = 0.5^k *0.999+0.001$
+\\ so $P(T|H_k) = \frac{P(T, H_k)}{P(H_k)} = \frac{0.001}{0.5^k * 0.999+0.001}$
+\\ (b)$P(T|H_k) = \frac{0.001}{0.5^k * 0.999+0.001} > 0.999$
+\\ then $0.001 > 0.999*(0.5^k*0.999+0.001)$
+\\ then $\frac{1}{999} > 0.5^k * 0.999+0.001$
+\\ then $\frac{1}{999} - \frac{1}{1000} > 0.5^k * \frac{999}{1000}$
+\\ then $(\frac{1}{999} - \frac{1}{1000}) / \frac{999}{1000} > 0.5^k$
+\\ so $\frac{1000}{999^2} - \frac{1}{999} > 0.5^k$
+\\so $\frac{1}{999^2} > 0.5^k$
+\\so $K>20$
+
+\item \textbf{Broken Rulers}
+\\ Answer:
+\\ (a)\includegraphics[width=0.6\textwidth]{IMG_9373.JPG}
+\\(b)Because x is uniformly distributed in [0, 4], then y is uniformly distributed in [0, x]. $f(y|x) = \frac{1}{x}$
+\\ so $E(Y|X) = \int_0^x \!y* f(y|x) \,\mathrm{d}y = \int_0^x \!y* \frac{1}{x} \,\mathrm{d}y = \frac{1}{x} * \frac{y^2}{2}\Biggr|_{0}^{x} = \frac{1}{x} * \frac{x^2}{2} = \frac{x}{2}$
+\\ (c) Because x is uniformly distributed in [0, 4], then $f(x) = \frac{1}{4}$. Then $E(Y) = \int_0^4 \!f(x)* E(Y|X) \,\mathrm{d}x = \int_0^4 \!\frac{1}{4}* \frac{x}{2} \,\mathrm{d}x = \frac{x^2}{16}\Biggr|_{0}^{4} = 1$ 
+\\ (d) Because $f(y|x) = \frac{f(x, y)}{f(x)}$, then $f(x, y) = f(x) * f(y|x) = \frac{1}{4} * \frac{1}{x} = \frac{1}{4x}$
+\\ Because $f(y) = \int_{0}^4 \!f(x, y) \,\mathrm{d}x = \int_{0}^4 \!\frac{1}{4x} \,\mathrm{d}x  = \frac{\ln{x}}{4}\Biggr|_{0}^{4} = \frac{\ln{4}}{4}$
+\\ So $f(x|y) = \frac{f(x, y)}{f(y)} = \frac{1}{4x}/\frac{\ln{4}}{4} = \frac{1}{x\ln{x}}$
+\\(e) $Cov (x, y) =  E(XY) - E(X)E(Y)$
+\\ $E(XY) = E(E(XY|X)) = E(XE(Y|X) = E(x * \frac{x}{2}) = \int_{0}^4 \!\frac{1}{4} * \frac{x^2}{2} \,\mathrm{d}x = \int_{0}^4 \!\frac{x^2}{8} \,\mathrm{d}x = \frac{x^3}{24}\Biggr|_{0}^{4} = \frac{8}{3}$
+\\$E(x) = \frac{4-0}{2} = 2$
+\\ so $Cov(x, y) = E(XY) - E(X)E(Y) = \frac{8}{3} -2 *1 = \frac{2}{3}$
+\item \textbf{Probabilities for Patients}
+\\ (a) Because $P(W_{i+1}|W_i) = 0.2$, then $P(I_{i+1}|W_i) = 0.8$
+\\ so $P(L) = (\prod_{i=1}^{l-1} P(W_{i+1}|W_i) * P(I_{i+1}|W_i) =0.2^{l-1} * 0.8 $
+\\ (b) $E(L) = \sum_{l=1}^{\infty} l * P(l) = \sum_{l=1}^{\infty} l *0.2^{l-1} * 0.8 = 0.8*\sum_{l=1}^{\infty} l *0.2^{l-1} = 0.8* \frac{1}{(1-0.2)^2} = \frac{1}{0.8}$
+\\(c) Code in lab1.R
+\\(d) Code in lab1.R
+\\(e) If $P(W_{i+1}|W_i) = 0.5$, then $P(I_{i+1}|W_i) = 0.5$
+\\ so $P(L) = (\prod_{i=1}^{l-1} P(W_{i+1}|W_i)) * P(I_{i+1}|W_i) =0.5^{l-1} * 0.5 = 0.5^l $
+\\ then $E(L) = \sum_{l=1}^{\infty} l * P(l) = \sum_{l=1}^{\infty} l *0.5^{l} = 0.5*\sum_{l=1}^{\infty} l *0.5^{l-1} = 0.5* \frac{1}{(1-0.5)^2} = \frac{1}{0.5}$
+\\ $\frac{1}{0.5} - \frac{1}{0.8} = 2-1.25 =0.75$
+\\ (f) $P(L=3) = P(W_{2}|W_1) * P(W_{3}|W_2) = 0.8$. Because the transition probabilities are constant,  then $P(W_{i+1}|W_i) = \sqrt{0.8}$
+\\ (g)$P(L=7) = P(W_{2}|W_1) * P(W_{3}|W_2) * P(W_{4}|W_3) * P(W_{5}|W_4) *P(W_{6}|W_5) * P(W_{7}|W_6)  = 0.4$. Because the transition probabilities are constant,  then $P(W_{i+1}|W_i) = \sqrt[6]{0.4}$
+\\ (h) The different f vs g is because each transition probability is multiplied by the previous transition probability, instead of adding on top of previous transition probability
+\item \textbf{Wise Investments}
+\\(a) $P(X=0) = \binom{0} {2} * (\frac{1}{4})^2 * (\frac{3}{4})^0 = \frac{1}{16}$
+\\$P(X=1) = \binom{1} {2} * (\frac{1}{4})^1 * (\frac{3}{4})^1 = \frac{3}{8}$
+\\$P(X=2) = \binom{2} {2} * (\frac{1}{4})^0 * (\frac{3}{4})^2 = \frac{9}{16}$
+\\ so $E(x) = 0 * P(X=0) + 1 * P(X=1) + 2 * P(X=2) = 0 + \frac{3}{8} + \frac{9}{16} * 2 = 1.5$
+\\(b) $Var(X) = Var(U_1 + U_2) = Var(U_1) + Var(U_2) +2Cov(U_1, U2) $
+\\ $Cov(U_1, U2) = E(U_1, U_2) - E(U_1) * E(U_2)$
+\\ Because the only contribution to case $E(U_1, U_2)$ comes from the case when $X_1 = 1 and X_2 = 1$, then $Cov(U_1, U2) = P(U_1, U_2) - \frac{3}{4} * \frac{3}{4} = P(U_1, U_2) - \frac{9}{16}$
+\\ the max value of $P(U_1, U_2)$ is $\frac{3}{4}$
+\\so the max value of $Cov(U_1, U2)$ is $Cov(U_1, U2) =E(U_1, U_2) - E(U_1) * E(U_2) = \frac{3}{4} - \frac{3}{4} * \frac{3}{4} = \frac{3}{16}$
+\\ Because $U_i$ has only two states - unicorn or not, it is a binomial distribution. Then $Var(U_1) = Var(U_2) = 1 * \frac{3}{4} * \frac{1}{4} = \frac{3}{16}$
+\\ so the max value of Var(x) is $Var(X) =Var(U_1) + Var(U_2) +2Cov(U_1, U2) = \frac{3}{16} + \frac{3}{16} + 2 * \frac{3}{16} = \frac{3}{4}$
+\\(c) Because $P(U_1 or U_2) = P(U_1) + P(U_2) - P(U_1, U_2)$, then $P(U_1, U_2) = P(U_1) + P(U_2) - P(U_1 or U_2)$
+\\ The max value of $P(U_1 or U_2)$ is 1, so the min value of $P(U_1, U_2) = \frac{3}{4} + \frac{3}{4} - 1 = \frac{1}{2}$
+\\ so the min value of $Var(X) = Var(U_1) +  Var(U_2) + 2Cov(U_1, U_2) = Var(U_1) + Var(U_2) + 2 * (P(U_1, U_2) - E(U_1) * E(U_2)) = \frac{3}{16} + \frac{3}{16} + 2* (\frac{1}{2} - \frac{3}{4} * \frac{3}{4}) =\frac{1}{4}$
+\\ (d) from (b) and (c), we can see $-\frac{1}{16}\geq Cov (U_i, U_j) \leq \frac{3}{16}$
+\\ for n companys, $Var(X) = \frac{3}{16} * n + \sum_{all} Cov (U_i, U_j)$. So $\frac{3}{16} * n-\frac{n(n-1)}{16}\geq Var(X) \leq \frac{3}{16} * n + \frac{3n(n-1)}{16}$
+\\ when n=4, $\frac{3}{16} * 4-\frac{4*3}{16}\geq Var(X) \leq \frac{3}{16} * 4 + \frac{3*4*3}{16}$. So the min value of Var(x) is 0, and the max value of Var(x) is 3
+
+
+
+\end{enumerate}
+
+\end{document}
